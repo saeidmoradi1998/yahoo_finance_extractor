@@ -3,13 +3,20 @@ from typing import List
 import pandas as pd
 from tqdm import tqdm
 
-from src.config import MAX_COMPANIES, LATEST_N_YEARS
 from src.logger import get_logger
 from src.extract import fetch_all_from_ticker, get_sp500_tickers
 from src.transform import build_company_records
 from src.models import CompanyFinancialRecord
 
+from dotenv import load_dotenv
+import os
+
 logger = get_logger(__name__)
+
+load_dotenv()
+
+MAX_COMPANIES = int(os.getenv("MAX_COMPANIES"))
+LATEST_N_YEARS = int(os.getenv("LATEST_N_YEARS"))
 
 
 def main(max_companies: int = MAX_COMPANIES, latest_n_years: int = LATEST_N_YEARS) -> pd.DataFrame:
