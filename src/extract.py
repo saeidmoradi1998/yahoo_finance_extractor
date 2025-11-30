@@ -48,17 +48,14 @@ def fetch_all_from_ticker(
 ) -> Tuple[CompanyMeta, Optional[pd.DataFrame], Optional[pd.DataFrame]]:
     """
     Fetch metadata and annual financial statements for a single ticker.
-
     This function creates a single yfinance.Ticker instance and reuses it
     for all data pulls to avoid unnecessary repeated instantiation.
     """
-    # Single Ticker object to avoid overhead of multiple instantiations
     t = yf.Ticker(ticker)
 
-    # info can occasionally be missing or incomplete; use defensive access
     try:
         info = t.info or {}
-    except Exception as exc:  # yfinance sometimes throws on .info
+    except Exception as exc:  
         logger.warning("Failed to fetch metadata for %s: %s", ticker, exc)
         info = {}
 
@@ -70,7 +67,6 @@ def fetch_all_from_ticker(
         currency=info.get("financialCurrency") or info.get("currency"),
     )
 
-    # Annual income statement and balance sheet
     income_df: Optional[pd.DataFrame]
     balance_df: Optional[pd.DataFrame]
 
@@ -86,7 +82,6 @@ def fetch_all_from_ticker(
         logger.warning("Failed to fetch balance sheet for %s: %s", ticker, exc)
         balance_df = None
 
-    # Normalize empty DataFrames to None for easier downstream handling
     if isinstance(income_df, pd.DataFrame) and income_df.empty:
         logger.info("Empty income statement for %s", ticker)
         income_df = None

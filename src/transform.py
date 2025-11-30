@@ -50,7 +50,6 @@ def build_company_records(
         logger.info("Skipping %s due to missing income statement.", meta.ticker)
         return []
 
-    # Build column-to-year mapping, sorted by year descending
     col_year_pairs = []
     for col in income_df.columns:
         year = _extract_year(col)
