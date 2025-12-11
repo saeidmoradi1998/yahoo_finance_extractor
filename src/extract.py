@@ -37,7 +37,7 @@ def get_sp500_tickers(max_companies: int = 300) -> list[str]:
     response.raise_for_status()
 
     tables = pd.read_html(StringIO(response.text))
-    df = tables[1]
+    df = tables[0]
 
     tickers = df["Symbol"].dropna().astype(str).str.strip().tolist()
     return tickers[:max_companies]
