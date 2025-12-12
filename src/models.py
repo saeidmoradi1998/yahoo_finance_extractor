@@ -19,3 +19,14 @@ class CompanyFinancialRecord(BaseModel):
     net_income: Optional[float] = Field(None, description="Net income")
     total_assets: Optional[float] = Field(None, description="Total assets")
     total_liabilities: Optional[float] = Field(None, description="Total liabilities")
+
+
+
+class CompanyMeta(BaseModel):
+    """Basic company metadata extracted from Yahoo Finance."""
+
+    ticker: str
+    name: Optional[str]
+    country: Optional[str]
+    industry: Optional[str]
+    currency: Optional[str]

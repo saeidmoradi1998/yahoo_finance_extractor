@@ -3,8 +3,7 @@ from typing import List, Optional
 import pandas as pd
 
 from .logger import get_logger
-from .extract import CompanyMeta
-from .models import CompanyFinancialRecord
+from .models import CompanyFinancialRecord, CompanyMeta
 
 logger = get_logger(__name__)
 

@@ -1,6 +1,7 @@
-from dataclasses import dataclass
 from io import StringIO
 from typing import Optional, Tuple
+from .models import CompanyMeta
+
 
 import pandas as pd
 import requests
@@ -11,15 +12,7 @@ from .logger import get_logger
 logger = get_logger(__name__)
 
 
-@dataclass
-class CompanyMeta:
-    """Basic company metadata extracted from Yahoo Finance."""
 
-    ticker: str
-    name: Optional[str]
-    country: Optional[str]
-    industry: Optional[str]
-    currency: Optional[str]
 
 
 def get_sp500_tickers(max_companies: int = 300) -> list[str]:
