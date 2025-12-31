@@ -114,7 +114,7 @@ yahoo_finance_extractor/
 
 ### Clone the repo
 ```bash
-git clone https://github.com/reza-abdi7/yahoo_finance_extractor.git
+git clone https://github.com/saeidmoradi1998/yahoo_finance_extractor.git
 ```
 
 ### Installation
